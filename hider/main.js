@@ -6,9 +6,8 @@ var logLocation = () => {
   navigator.geolocation.getCurrentPosition(function(location) {
     currLat = location.coords.latitude;
     currLong = location.coords.longitude;
-    console.log("Latitude: " + currLat);
-    console.log("Longitude: " + currLong);
-
+    debug.innerHTML = "<h4>Latitude: " + currLat + "<br>Longitude: " + currLong + "</h3>";
+    
     //console.log(location.coords.accuracy);
   });
 };
