@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="main.js">
+
+    </script>
+    <meta charset="utf-8">
+    <title>Manhunt - chaser</title>
+  </head>
+  <body>
+    <img src="./right-arrow.png" onclick="rotate()" id='arrow'>
+    <br>
+    <textarea placeholder="Latitude" id="latitude" rows="2" cols="20"></textarea>
+    <textarea placeholder="Longitude" id="longitude" rows="2" cols="20"></textarea>
+    <br>
+    <button type="button" name="updateCoords" onclick="setEnCoords()">Update Coordinates</button>
+    <button type="button" name="getCoords" onclick="updateCoords()">Get coordinates</button>
+    <button type="button" name="updateOffset" onclick="updateOffset()">Update offset</button>
+    <br>
+    <div class="enCoords" id="enCoords">
+
+    </div>
+    <br>
+    <div class="compassOutput" id="compassOutput">
+
+    </div>
+
+  </body>
+</html>
