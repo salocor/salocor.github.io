@@ -8,7 +8,7 @@ var logLocation = () => {
     currLong = location.coords.longitude;
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
-
+    sendLocation();
     //console.log(location.coords.accuracy);
   });
 };
@@ -17,7 +17,8 @@ var timer = setInterval(logLocation, 1000);
 
 const sendLocation = async()=>{
   let errorThrown = false;
-  debug.innerHTML = "<h4>Latitude: " + currLat + "<br>Longitude: " + currLong + "</h3>";
+   var request = "https://salocor.pythonanywhere.com/location?lat=" + currLat + "&long=" + currLong;
+  debugResult.innerHTML = "<h4>Latitude: " + currLat + "<br>Longitude: " + currLong + "</h3>";
   console.log("Sent request: " + request);
 
   try {
