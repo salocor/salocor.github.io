@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+      function play() {
+        document.getElementById('playButton').setAttribute('class', 'blurOut');
+        document.getElementById('secondary').setAttribute('class', 'show secondary');
+      }
+    </script>
+    <meta charset="utf-8">
+    <title>Manhunt</title>
+  </head>
+  <body>
+    <div class="foreground">
+
+      <div class="island">
+
+        <div class="title">
+          <p>Manhunt</p>
+        </div>
+
+        <div class="buttons">
+          <button type="button" name="Runner" id="runner" class="runButton" onclick="window.location.href='/hider';">Run</button>
+          <button type="button" name="Chaser" id="chaser" class="chaseButton" onclick="window.location.href='/chaser';">Chase</button>
+        </div>
+
+    </div>
+    </div>
+  </body>
+</html>

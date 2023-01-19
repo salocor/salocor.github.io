@@ -1,0 +1,96 @@
+body {
+  background-image: url(map.png);
+  background-size: 180vw 90vh;
+}
+
+@keyframes blurIn {
+  0% { filter: blur(4px);
+    opacity: 0%;
+  }
+  50% { filter: blur(4px);
+    opacity: 0%;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 100%;
+  }
+}
+
+@keyframes blurOut {
+  0% { filter: blur(0);
+  opacity: 100%; }
+  50% {opacity: 100;}
+  100% { filter: blur(4px);
+  opacity: 0; }
+}
+
+p{
+  margin-top: 40%;
+  font-size: 100pt;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 500;
+  color: black;
+}
+
+button {
+  text-decoration: none;
+  width: 350px;
+  height: 150px;
+  font-size: 60pt;
+  color: white;
+  border-radius: 40px;
+  background-color: #03a9f4;
+  bottom: 20%;
+  border: none;
+}
+
+.blurOut {
+  animation: blurOut 0.25s;
+  opacity: 0;
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.show {
+  animation: blurIn 0.5s;
+  visibility: visible;
+  opacity: 100%;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 10%;
+}
+
+.chaseButton {
+  margin-left: 22px;
+}
+
+.runButton {
+  margin-right: 22px;
+}
+
+.foreground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.island {
+  margin-top: 15%;
+  background-color: white;
+  width: 85vw;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  border-radius: 40px;
+}
+
+img {
+  width: 80%;
+  height: auto;
+}
