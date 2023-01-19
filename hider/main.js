@@ -17,7 +17,7 @@ var timer = setInterval(logLocation, 1000);
 
 const sendLocation = async()=>{
   let errorThrown = false;
-  var request = "https://salocor.pythonanywhere.com/location?lat=" + currLat + "&long=" + currLong;
+  debug.innerHTML = "<h4>Latitude: " + currLat + "<br>Longitude: " + currLong + "</h3>";
   console.log("Sent request: " + request);
 
   try {
