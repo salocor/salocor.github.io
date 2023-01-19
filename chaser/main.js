@@ -101,7 +101,9 @@ var logLocation = () => {
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
+
     //console.log(location.coords.accuracy);
+    httpsRequest();
   });
 
   console.log('logged location');
@@ -141,8 +143,25 @@ function showDebug() {
 
 function startGame() {
   rotate();
-  
+
   var timer = setInterval(logLocation, 1000);
   document.getElementById('startButton').setAttribute('style', 'animation: fadeOut 0.1s; opacity: 0%;');
   document.getElementById('arrow').setAttribute('class', 'arrowFadeIn');
+}
+
+function httpsRequest() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://salocor.pythonanywhere.com/getLocation');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      let response = xhr.responseText;
+      let obj = JSON.parse(response);
+      enLat = obj["location"]["latitude"];
+      enLong = obj["location"]["longitude"];
+    }
+    else {
+      console.error(xhr.statusText);
+    }
+  };
+  xhr.send();
 }
