@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="main.js">
+
+    </script>
+    <meta charset="utf-8">
+    <title>Manhunt - chaser</title>
+  </head>
+  <body>
+
+    <img src="./right-arrow.png" onclick="rotate()" id="arrow" class="arrow">
+    <br>
+
+    <br>
+    <div class="debug">
+      <div class="debugItems" id="debugItems" style="visibility: hidden;">
+
+        <div class="enCoords" id="enCoords"></div>
+        <br>
+        <div class="compassOutput" id="compassOutput"></div>
+        <br>
+        <div class="keys">
+          
+        </div>
+        <button type="button" name="updateCoords" onclick="setEnCoords()">Update Coordinates</button>
+        <button type="button" name="getCoords" onclick="updateCoords()">Get coordinates</button>
+        <button type="button" name="updateOffset" onclick="updateOffset()">Update offset</button>
+        <textarea placeholder="Latitude" id="latitude" rows="2" cols="20"></textarea>
+        <textarea placeholder="Longitude" id="longitude" rows="2" cols="20"></textarea>
+      </div>
+      <button type="button" name="debug" onclick="showDebug()" class="debugButton">Show debug controls</button>
+    </div>
+    <button type="button" name="start" id="startButton" class="startButton" onclick="startGame()">Start</button>
+
+
+
+  </body>
+</html>
