@@ -6,7 +6,8 @@ var logLocation = () => {
   navigator.geolocation.getCurrentPosition(function(location) {
     currLat = location.coords.latitude;
     currLong = location.coords.longitude;
-    debug.innerHTML = "<h4>Latitude: " + currLat + "<br>Longitude: " + currLong + "</h3>";
+    console.log("Latitude: " + currLat);
+    console.log("Longitude: " + currLong);
 
     //console.log(location.coords.accuracy);
   });
@@ -16,7 +17,7 @@ var timer = setInterval(logLocation, 1000);
 
 const sendLocation = async()=>{
   let errorThrown = false;
-  var request = "https://" + document.getElementById('ip').value + ":5000/location?lat=" + currLat + "&long=" + currLong;
+  var request = "https://salocor.pythonanywhere.com/location?lat=" + currLat + "&long=" + currLong;
   console.log("Sent request: " + request);
 
   try {
@@ -27,6 +28,7 @@ const sendLocation = async()=>{
     );
     if (response.ok) {
       console.log("Sent ok");
+      debugResult.innerHTML = "<h3>Result: " + response + "</h3>";
     }
     }
     catch(e) {
