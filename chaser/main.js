@@ -6,6 +6,9 @@ var directionToEnemy;
 
 var alpha;
 
+enLat = 1;
+enLong = 2;
+
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
     let latDiff = (enLat - currLat);
@@ -107,7 +110,7 @@ var logLocation = () => {
 
 // (C) START INTERVAL
 // RESET THIS ONE FOR LOCATON LOOP -->
-var timer = setInterval(logLocation, 1000);
+
 // TO STOP - clearInterval(logLocation);
 
 
@@ -126,4 +129,20 @@ function setEnCoords() {
 function updateOffset() {
   offset = 360 - alpha;
   console.log("New offset = " + offset);
+}
+
+function showDebug() {
+  if (document.getElementById('debugItems').getAttribute('style') == 'visibility: hidden;') {
+    document.getElementById('debugItems').setAttribute('style', 'visibility: visible;');
+  } else {
+    document.getElementById('debugItems').setAttribute('style', 'visibility: hidden;');
+  }
+}
+
+function startGame() {
+  rotate();
+  
+  var timer = setInterval(logLocation, 1000);
+  document.getElementById('startButton').setAttribute('style', 'animation: fadeOut 0.1s; opacity: 0%;');
+  document.getElementById('arrow').setAttribute('class', 'arrowFadeIn');
 }
