@@ -6,6 +6,8 @@ var directionToEnemy;
 
 var alpha;
 
+var tooClose;
+
 enLat = 1;
 enLong = 2;
 
@@ -101,8 +103,12 @@ var logLocation = () => {
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
-
+    if (Math.pow((enLat - currLat), 2) + Math.pow((enLong - currLong), 2)) < 0.000000029929) {
+      tooClose = true;
+    }
     //console.log(location.coords.accuracy);
+    tooCloseOutput.innerHTML = "<h3>Too close: " + tooClose + "</h3>";
+    enCoords.innerHTML = "<h3>Enemy Latitude: " + enLat + "<br>Enemy Longitude: " + enLong + "</h3>";
     httpsRequest();
   });
 
