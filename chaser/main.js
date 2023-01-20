@@ -82,7 +82,7 @@ function getLocation() {
 function showPosition(position) {
   x.innerHTML = "Latitude: " + position.coords.latitude +
   "<br>Longitude: " + position.coords.longitude;
-}
+} 
 
 
 var getLocationAsync = () => {
@@ -103,11 +103,11 @@ var logLocation = () => {
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
-    if (((enLat - currLat) < 0.000173 )|| ((enLong - currLong) < 0.00173)) {
+    if ((Math.abs((enLat - currLat)) < 0.000173 )|| (Math.abs((enLong - currLong)) < 0.00173)) {
       tooClose = true;
     }
     //console.log(location.coords.accuracy);
-    tooCloseOutput.innerHTML = "<h3>Too close: " + tooClose + "<br>(enLat - currLat) = " + (enLat - currLat) + "</h3>";
+    tooCloseOutput.innerHTML = "<h3>Too close: " + tooClose + "<br>Math.abs((enLong - currLong)) = " + Math.abs((enLong - currLong)) + "</h3>";
     enCoords.innerHTML = "<h3>Enemy Latitude: " + enLat + "<br>Enemy Longitude: " + enLong + "</h3>";
     httpsRequest();
   });
