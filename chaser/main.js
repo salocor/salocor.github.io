@@ -8,8 +8,8 @@ var alpha;
 
 var tooClose;
 
-enLat = 1;
-enLong = 2;
+var enLat = 1;
+var enLong = 2;
 
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
@@ -103,7 +103,7 @@ var logLocation = () => {
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
-    if (Math.pow((enLat - currLat), 2) + Math.pow((enLong - currLong), 2)) < 0.000000029929) {
+    if (Math.pow((enLat - currLat), 2) + Math.pow((enLong - currLong), 2) < 0.000000029929) {
       tooClose = true;
     }
     //console.log(location.coords.accuracy);
