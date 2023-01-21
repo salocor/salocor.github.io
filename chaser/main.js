@@ -82,7 +82,7 @@ function getLocation() {
 function showPosition(position) {
   x.innerHTML = "Latitude: " + position.coords.latitude +
   "<br>Longitude: " + position.coords.longitude;
-} 
+}
 
 
 var getLocationAsync = () => {
@@ -103,7 +103,7 @@ var logLocation = () => {
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
-    if ((Math.abs((enLat - currLat)) < 0.000173 )|| (Math.abs((enLong - currLong)) < 0.00173)) {
+    if ((Math.abs((enLat - currLat)) < 0.000373 )|| (Math.abs((enLong - currLong)) < 0.00373)) {
       tooClose = true;
     }
     //console.log(location.coords.accuracy);
