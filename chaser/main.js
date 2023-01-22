@@ -156,6 +156,7 @@ function startGame() {
   var timer = setInterval(logLocation, 1000);
   document.getElementById('startButton').setAttribute('style', 'animation: fadeOut 0.1s; opacity: 0%;');
   document.getElementById('arrow').setAttribute('class', 'arrowFadeIn');
+  document.getElementById('title').setAttribute('style', 'animation: moveTitle 1s; top: 0%; font-size: 10vw;');
 }
 
 function httpsRequest() {
