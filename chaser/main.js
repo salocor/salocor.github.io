@@ -3,6 +3,7 @@ var offset = 0;
 
 var compass;
 var directionToEnemy;
+var distanceBetweenEnemy;
 
 var alpha;
 var tooClose;
@@ -106,11 +107,12 @@ var logLocation = () => {
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
-    if ((Math.abs((enLat - currLat)) < 0.000373 )|| (Math.abs((enLong - currLong)) < 0.00373)) {
+    distanceBetweenEnemy = getDistance(currlat, currLong, enLat, enLong);
+    if (distanceBetweenEnemy < 50) {
       tooClose = true;
     }
     //console.log(location.coords.accuracy);
-    tooCloseOutput.innerHTML = "<h3>Too close: " + tooClose + "<br>Math.abs((enLong - currLong)) = " + Math.abs((enLong - currLong)) + "</h3>";
+    tooCloseOutput.innerHTML = "<h3>Too close: " + tooClose + "<br>Distance = " + distanceBetweenEnemy + "</h3>";
     enCoords.innerHTML = "<h3>Enemy Latitude: " + enLat + "<br>Enemy Longitude: " + enLong + "</h3>";
     httpsRequest();
   });
@@ -188,4 +190,22 @@ function debugGesture() {
   if (debugGestureCount > 5) {
     showDebug();
   }
+}
+
+function getDistance(lat1, lon1, lat2, lon2) {
+  var R = 20908800; // Radius of the earth in feet
+  var dLat = deg2rad(lat2-lat1);
+  var dLon = deg2rad(lon2-lon1);
+  var a =
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ;
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c; // Distance in feet
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
 }
