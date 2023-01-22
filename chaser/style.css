@@ -27,7 +27,7 @@ img {
     opacity: 0%;
   }
 
-  85% {
+  88% {
     opacity: 0%;
   }
   100% {
@@ -112,8 +112,8 @@ p {
 
 .arrowFadeIn {
   position: fixed;
-  animation: zoomIn 1.45s;
-  webkit-animation: zoomIn 1.45s;
+  animation: zoomIn 1.55s;
+  webkit-animation: zoomIn 1.55s;
   width: 80%;
   top: 10%;
 }
