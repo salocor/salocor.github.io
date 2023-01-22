@@ -12,7 +12,7 @@
     <title>Manhunt - chaser</title>
   </head>
   <body>
-    <p class="title" id="title">Manhunt</p>
+    <p class="title" id="title" onclick="debugGesture()">Manhunt</p>
     <div class="arrowDiv">
       <img src="./right-arrow.png" onclick="rotate()" id="arrow" class="arrow">
     </div>
@@ -36,7 +36,6 @@
         <textarea placeholder="Latitude" id="latitude" rows="2" cols="20"></textarea>
         <textarea placeholder="Longitude" id="longitude" rows="2" cols="20"></textarea>
       </div>
-      <button type="button" name="debug" onclick="showDebug()" class="debugButton" id="debugButton">Show debug controls</button>
     </div>
     <button type="button" name="start" id="startButton" class="startButton" onclick="startGame()">Start</button>
 

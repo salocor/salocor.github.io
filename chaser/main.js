@@ -12,6 +12,8 @@ var debugOpen = false;
 var enLat = 1;
 var enLong = 2;
 
+var debugGestureCount = 0;
+
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
     let latDiff = (enLat - currLat);
@@ -179,4 +181,11 @@ function httpsRequest() {
     }
   };
   xhr.send();
+}
+
+function debugGesture() {
+  debugGestureCount++;
+  if (debugGestureCount > 5) {
+    showDebug();
+  }
 }
