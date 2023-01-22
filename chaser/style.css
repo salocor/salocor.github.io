@@ -112,8 +112,8 @@ p {
 
 .arrowFadeIn {
   position: fixed;
-  animation: zoomIn 1.25s;
-  webkit-animation: zoomIn 1.25s;
+  animation: zoomIn 1.35s;
+  webkit-animation: zoomIn 1.35s;
   width: 80%;
   top: 10%;
 }
