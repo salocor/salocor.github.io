@@ -107,7 +107,7 @@ var logLocation = () => {
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
-    distanceBetweenEnemy = getDistance(currlat, currLong, enLat, enLong);
+    distanceBetweenEnemy = getDistance(currLat, currLong, enLat, enLong);
     if (distanceBetweenEnemy < 50) {
       tooClose = true;
     }
