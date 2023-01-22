@@ -103,7 +103,6 @@ p {
 }
 
 .arrow {
-  position: fixed;
   opacity: 0%;
   padding-left: 10%;
   top: 10%;
@@ -111,7 +110,7 @@ p {
 }
 
 .arrowFadeIn {
-  position: fixed;
+
   animation: zoomIn 1.55s;
   webkit-animation: zoomIn 1.55s;
   width: 80%;
@@ -142,5 +141,5 @@ p {
   width: 100vw;
   display: flex;
   justify-content: center;
-  margin-top: 4vh;
+  margin-top: 12vh;
 }
