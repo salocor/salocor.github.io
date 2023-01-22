@@ -2,6 +2,8 @@ img {
 
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
+
 @keyframes rotato {
   0% {
     transform: rotate(0deg);
@@ -82,4 +84,11 @@ body {
   position: fixed;
   bottom: 1%;
   left: 5%;
+}
+
+.title {
+  font-size: 10vw;
+  text-align: center;
+  margin-top: 4%;
+  font-family: 'Montserrat', sans-serif;
 }
