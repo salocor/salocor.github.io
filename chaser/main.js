@@ -5,8 +5,9 @@ var compass;
 var directionToEnemy;
 
 var alpha;
-
 var tooClose;
+
+var debugOpen = false;
 
 var enLat = 1;
 var enLong = 2;
@@ -142,8 +143,10 @@ function updateOffset() {
 function showDebug() {
   if (document.getElementById('debugItems').getAttribute('style') == 'visibility: hidden;') {
     document.getElementById('debugItems').setAttribute('style', 'visibility: visible;');
+    document.getElementById('debugButton').setAttribute('class', 'debugButton active');
   } else {
     document.getElementById('debugItems').setAttribute('style', 'visibility: hidden;');
+    document.getElementById('debugButton').setAttribute('class', 'debugButton');
   }
 }
 

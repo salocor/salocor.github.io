@@ -13,7 +13,9 @@
   </head>
   <body>
     <p class="title">Manhunt</p>
-    <img src="./right-arrow.png" onclick="rotate()" id="arrow" class="arrow">
+    <div class="arrowDiv">
+      <img src="./right-arrow.png" onclick="rotate()" id="arrow" class="arrow">
+    </div>
     <br>
 
     <br>
@@ -34,7 +36,7 @@
         <textarea placeholder="Latitude" id="latitude" rows="2" cols="20"></textarea>
         <textarea placeholder="Longitude" id="longitude" rows="2" cols="20"></textarea>
       </div>
-      <button type="button" name="debug" onclick="showDebug()" class="debugButton">Show debug controls</button>
+      <button type="button" name="debug" onclick="showDebug()" class="debugButton" id="debugButton">Show debug controls</button>
     </div>
     <button type="button" name="start" id="startButton" class="startButton" onclick="startGame()">Start</button>
 
