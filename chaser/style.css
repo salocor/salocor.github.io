@@ -25,11 +25,9 @@ img {
 @keyframes zoomIn {
   0% {
     opacity: 0%;
-    top: -100%;
   }
   100% {
     opacity: 100%;
-    top: 10%;
   }
 }
 
@@ -110,6 +108,7 @@ p {
 
 .arrowFadeIn {
   position: fixed;
+  animation-delay: 1s;
   animation: zoomIn 0.25s;
   width: 80%;
   top: 10%;
