@@ -22,7 +22,7 @@ const sendLocation = async()=>{
   console.log("Sent request: " + request);
 
   try {
-    const response =  fetch(request,
+    const response = fetch(request,
       {
         method: "GET",
       }
@@ -103,11 +103,11 @@ function rotate() {
       // last negative is because the output
       // was negative and i have no idea why.
       dirToNextOffset = -compass + dirToNext;
-      if (dirToEnemyOffset < 0) { dirToEnemyOffset += 360; }
-      if (dirToEnemyOffset > 360) { dirToEnemyOffset -= 360; }
+      if (dirToNextOffset < 0) { dirToNextOffset += 360; }
+      if (dirToNextOffset > 360) { dirToNextOffset -= 360; }
       //compassOutput.innerHTML = "<h3>Compass: " + compass + "<br>Alpha: " + alpha + "<br>DirectionToEnemy: " + directionToEnemy + "<br>Arrow direction: " + dirToEnemyOffset +  "</h3>";
       //console.log("Heading: " + (alpha + 116 + (360 - directionToEnemy)) % 360); // Output + 26 for adjusting to true north + 90 since the arrow is 90 degrees off
-      document.getElementById('arrow').setAttribute('style', 'transform: rotate(' + dirToEnemyOffset + 'deg)'); // -90 since 0 degrees is set to north
+      document.getElementById('arrow').setAttribute('style', 'transform: rotate(' + dirToNextOffset + 'deg)'); // -90 since 0 degrees is set to north
       //console.log("(directionToEnemy - alpha - 26) % 360 = " + ((directionToEnemy - alpha - 26) % 360 ));
     }
 } , true);
