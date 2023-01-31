@@ -13,12 +13,18 @@
   </head>
   <body>
     <p class="title" id="title" onclick="debugGesture()">Manhunt</p>
-    <div class="arrowDiv">
-      <img src="./right-arrow.png" onclick="rotate()" id="arrow" class="arrow">
-    </div>
-    <br>
+    <div class="gameBeforeFade" id="game">
+      <div class="arrowDiv">
+        <img src="./right-arrow.png" onclick="rotate()" id="arrow" class="arrow">
+      </div>
+      <div class="destination">
+        <p>Next Location:</p>
+        <div class="nextLocation">
 
-    <br>
+        </div>
+      </div>
+    </div>
+
     <div class="debug">
       <div class="debugItems" id="debugItems" style="visibility: hidden;">
 
@@ -30,8 +36,6 @@
         <div class="keys">
 
         </div>
-        <button type="button" name="updateCoords" onclick="setEnCoords()" class="debugButton">Update Coordinates</button>
-        <button type="button" name="getCoords" onclick="updateCoords()" class="debugButton">Get local coordinates</button>
         <button type="button" name="updateOffset" onclick="updateOffset()" class="debugButton">Update offset</button>
         <textarea placeholder="Latitude" id="latitude" rows="2" cols="20"></textarea>
         <textarea placeholder="Longitude" id="longitude" rows="2" cols="20"></textarea>

@@ -88,11 +88,20 @@ p {
   color: white;
 }
 
-.arrow {
+.gameBeforeFade {
   opacity: 0%;
-  padding-left: 10%;
-  top: 10%;
-  top: -100%;
+}
+
+.game p {
+  font-size: 10vw;
+  font-family: 'Montserrat';
+  text-align: center;
+}
+
+.destination {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
 }
 
 .arrowFadeIn {

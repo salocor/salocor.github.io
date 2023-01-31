@@ -4,11 +4,27 @@
     <meta charset="utf-8">
     <title>Manhunt hider</title>
     <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <textarea  placeholder="IP Address" name="ip" id="ip" rows="1" cols="15">10.104.124.172</textarea>
-    <div class="debugResult" id="debugResult">
+    <p class="title" id="title" onclick="debugGesture()">Runner</p>
+    <div class="gameBeforeFade" id="game">
+      <div class="arrowDiv">
+        <img src="./right-arrow.png" onclick="rotate()" id="arrow" class="arrow">
+      </div>
 
+      <div class="destination">
+        <p>Next Location:<br></p>
+        <div class="nextLocation" id="nextLocation">
+
+        </div>
+      </div>
     </div>
+    <div class="startDiv">
+      <button type="button" name="start" id="startButton" class="startButton" onclick="startGame()">&#9658;</button>
+    </div>
+    <button type="button" name="updateDestinationButton" onclick="updateDestination()" style="position: fixed; bottom: 2%; right: 5%">Update</button>
+    <button type="button" name="updateDestinationButton" onclick="completed++; updateDestination()" style="position: fixed; bottom: 8%; right: 5%">Next</button>
+    <div class="debugResult" id="debugResult"> </div>
   </body>
 </html>

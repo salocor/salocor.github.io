@@ -1,19 +1,13 @@
 
 var offset = 0;
 
-var compass;
-var directionToEnemy;
-var distanceBetweenEnemy;
-
-var alpha;
-var tooClose;
+var compass, directionToEnemy, distanceBetweenEnemy, alpha, tooClose;
 
 var debugOpen = false;
 
-var enLat = 1;
-var enLong = 2;
+var enLat = 1, enLong = 2, debugGestureCount = 0;
 
-var debugGestureCount = 0;
+var locations = [];
 
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
@@ -31,7 +25,6 @@ function getDeg(currLat, currLong, enLat, enLong) {
             heading -= 3.1415;
         else
             heading += 3.1415;
-
     }
     if (heading < 0)
         heading += 6.28319;
@@ -116,7 +109,7 @@ var logLocation = () => {
     //console.log(location.coords.accuracy);
     tooCloseOutput.innerHTML = "<h3>Too close: " + tooClose + "<br>Distance = " + distanceBetweenEnemy + "</h3>";
     enCoords.innerHTML = "<h3>Enemy Latitude: " + enLat + "<br>Enemy Longitude: " + enLong + "</h3>";
-    httpsRequest();
+    locationRequest();
   });
 
   console.log('logged location');
@@ -157,9 +150,9 @@ function showDebug() {
 }
 
 function startGame() {
-  rotate();
+  //rotate();
 
-  var timer = setInterval(logLocation, 500);
+  //var timer = setInterval(logLocation, 500);
   document.getElementById('startButton').setAttribute('style', 'opacity: 0%;');
 
   document.getElementById('title').setAttribute('style', 'animation: moveTitle 1s; top: 0%; font-size: 10vw;');
@@ -167,10 +160,10 @@ function startGame() {
 }
 
 function fadeInArrow() {
-  document.getElementById('arrow').setAttribute('class', 'arrowFadeIn')
+  document.getElementById('game').setAttribute('class', 'arrowFadeIn game')
 }
 
-function httpsRequest() {
+function locationRequest() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://salocor.pythonanywhere.com/getLocation');
   xhr.onload = function() {
@@ -179,6 +172,24 @@ function httpsRequest() {
       let obj = JSON.parse(response);
       enLat = obj["location"]["latitude"];
       enLong = obj["location"]["longitude"];
+    }
+    else {
+      console.error(xhr.statusText);
+    }
+  };
+  xhr.send();
+}
+
+function pathRequest() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http://salocor.pythonanywhere.com/paths?pack=liberty&size=medium');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      let response = xhr.responseText;
+      let obj = JSON.parse(response);
+      for (var i = 0; i < 4; i++) {
+        locations.push(obj[0][i]);
+      }
     }
     else {
       console.error(xhr.statusText);
