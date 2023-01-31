@@ -153,7 +153,7 @@ function startGame() {
   document.getElementById('startButton').setAttribute('style', 'opacity: 0%;');
   setTimeout(fadeInArrow(), 1000);
   rotate();
-  var timer = setInterval(logLocation(), 1000);
+  var timer = setInterval(logLocation, 1000);
   pathRequest();
 }
 
