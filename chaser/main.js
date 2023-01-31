@@ -3,11 +3,17 @@ var offset = 0;
 
 var compass;
 var directionToEnemy;
+var distanceBetweenEnemy;
 
 var alpha;
+var tooClose;
 
-enLat = 1;
-enLong = 2;
+var debugOpen = false;
+
+var enLat = 1;
+var enLong = 2;
+
+var debugGestureCount = 0;
 
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
@@ -101,8 +107,15 @@ var logLocation = () => {
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
-
+    distanceBetweenEnemy = getDistance(currLat, currLong, enLat, enLong);
+    if (distanceBetweenEnemy < 100) {
+      tooClose = true;
+    } else {
+      tooClose = false;
+    }
     //console.log(location.coords.accuracy);
+    tooCloseOutput.innerHTML = "<h3>Too close: " + tooClose + "<br>Distance = " + distanceBetweenEnemy + "</h3>";
+    enCoords.innerHTML = "<h3>Enemy Latitude: " + enLat + "<br>Enemy Longitude: " + enLong + "</h3>";
     httpsRequest();
   });
 
@@ -136,17 +149,25 @@ function updateOffset() {
 function showDebug() {
   if (document.getElementById('debugItems').getAttribute('style') == 'visibility: hidden;') {
     document.getElementById('debugItems').setAttribute('style', 'visibility: visible;');
+    document.getElementById('debugButton').setAttribute('class', 'debugButton active');
   } else {
     document.getElementById('debugItems').setAttribute('style', 'visibility: hidden;');
+    document.getElementById('debugButton').setAttribute('class', 'debugButton');
   }
 }
 
 function startGame() {
   rotate();
 
-  var timer = setInterval(logLocation, 1000);
-  document.getElementById('startButton').setAttribute('style', 'animation: fadeOut 0.1s; opacity: 0%;');
-  document.getElementById('arrow').setAttribute('class', 'arrowFadeIn');
+  var timer = setInterval(logLocation, 500);
+  document.getElementById('startButton').setAttribute('style', 'opacity: 0%;');
+
+  document.getElementById('title').setAttribute('style', 'animation: moveTitle 1s; top: 0%; font-size: 10vw;');
+  setTimeout(fadeInArrow(), 1000);
+}
+
+function fadeInArrow() {
+  document.getElementById('arrow').setAttribute('class', 'arrowFadeIn')
 }
 
 function httpsRequest() {
@@ -164,4 +185,29 @@ function httpsRequest() {
     }
   };
   xhr.send();
+}
+
+function debugGesture() {
+  debugGestureCount++;
+  if (debugGestureCount > 5) {
+    showDebug();
+  }
+}
+
+function getDistance(lat1, lon1, lat2, lon2) {
+  var R = 20908800; // Radius of the earth in feet
+  var dLat = deg2rad(lat2-lat1);
+  var dLon = deg2rad(lon2-lon1);
+  var a =
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ;
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c; // Distance in feet
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
 }
