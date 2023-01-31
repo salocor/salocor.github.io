@@ -164,7 +164,10 @@ function inDestBoundary() {
 }
 
 function completeLocation() {
-  completed++;
-  updateDestination();
+  logLocation();
+  if (completed < 4){
+    completed++;
+    updateDestination();
+  }
   document.getElementById('complete').setAttribute('style', "visibility: hidden");
 }
