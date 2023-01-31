@@ -40,7 +40,7 @@ const sendLocation = async()=>{
 
 function pathRequest() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://salocor.pythonanywhere.com/paths?pack=liberty&size=medium');
+  xhr.open('GET', 'https://salocor.pythonanywhere.com/paths?pack=liberty&size=medium');
   xhr.onload = function() {
     if (xhr.status === 200) {
       let response = xhr.responseText;
