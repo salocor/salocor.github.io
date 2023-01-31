@@ -1,4 +1,4 @@
-var currLat, currLong, nextLat, nextLong, dirToNext, dirToNextOffset, compass, alpha, completed = 0;
+var currLat, currLong, nextLat, nextLong, dirToNext, dirToNextOffset, compass, alpha, radius, completed = 0;
 
 var locations = [];
 
@@ -32,6 +32,7 @@ var logLocation = () => {
     currLong = location.coords.longitude;
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
+    inDestBoundary();
     sendLocation();
     //console.log(location.coords.accuracy);
   });
@@ -64,12 +65,14 @@ function pathRequest() {
       for (var i = 0; i < 4; i++) {
         locations.push(obj[0][i]);
       }
+      updateDestination();
     }
     else {
       console.error(xhr.statusText);
     }
   };
   xhr.send();
+
 }
 //
 
@@ -151,10 +154,12 @@ function deg2rad(deg) {
 function startGame() {
   document.getElementById('title').setAttribute('style', 'animation: moveTitle 1s; top: 0%; font-size: 10vw;');
   document.getElementById('startButton').setAttribute('style', 'opacity: 0%;');
+  pathRequest();
   setTimeout(fadeInArrow(), 1000);
   rotate();
+
   var timer = setInterval(logLocation, 1000);
-  pathRequest();
+
 }
 
 function fadeInArrow() {
@@ -165,4 +170,10 @@ function updateDestination() {
   nextLocation.innerHTML = "<p class='nextLoc'> " + locations[completed]['name'] + "</p>";
   nextLat = locations[completed]['data']['lat'];
   nextLong = locations[completed]['data']['long'];
+  radius = locations[completed]['radius']
+}
+
+function inDestBoundary() {
+  var distanceToNext = getDistance(currLat, currLong, nextLat, nextLong);
+
 }
