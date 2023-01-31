@@ -1,13 +1,13 @@
 
 var offset = 0;
 
-var compass, directionToEnemy, distanceBetweenEnemy, alpha, tooClose;
+var compass;
+var directionToEnemy;
 
-var debugOpen = false;
+var alpha;
 
-var enLat = 1, enLong = 2, debugGestureCount = 0;
-
-var locations = [];
+enLat = 1;
+enLong = 2;
 
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
@@ -25,6 +25,7 @@ function getDeg(currLat, currLong, enLat, enLong) {
             heading -= 3.1415;
         else
             heading += 3.1415;
+
     }
     if (heading < 0)
         heading += 6.28319;
@@ -100,16 +101,9 @@ var logLocation = () => {
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
-    distanceBetweenEnemy = getDistance(currLat, currLong, enLat, enLong);
-    if (distanceBetweenEnemy < 100) {
-      tooClose = true;
-    } else {
-      tooClose = false;
-    }
+
     //console.log(location.coords.accuracy);
-    tooCloseOutput.innerHTML = "<h3>Too close: " + tooClose + "<br>Distance = " + distanceBetweenEnemy + "</h3>";
-    enCoords.innerHTML = "<h3>Enemy Latitude: " + enLat + "<br>Enemy Longitude: " + enLong + "</h3>";
-    locationRequest();
+    httpsRequest();
   });
 
   console.log('logged location');
@@ -142,28 +136,20 @@ function updateOffset() {
 function showDebug() {
   if (document.getElementById('debugItems').getAttribute('style') == 'visibility: hidden;') {
     document.getElementById('debugItems').setAttribute('style', 'visibility: visible;');
-    document.getElementById('debugButton').setAttribute('class', 'debugButton active');
   } else {
     document.getElementById('debugItems').setAttribute('style', 'visibility: hidden;');
-    document.getElementById('debugButton').setAttribute('class', 'debugButton');
   }
 }
 
 function startGame() {
-  //rotate();
+  rotate();
 
-  //var timer = setInterval(logLocation, 500);
-  document.getElementById('startButton').setAttribute('style', 'opacity: 0%;');
-
-  document.getElementById('title').setAttribute('style', 'animation: moveTitle 1s; top: 0%; font-size: 10vw;');
-  setTimeout(fadeInArrow(), 1000);
+  var timer = setInterval(logLocation, 1000);
+  document.getElementById('startButton').setAttribute('style', 'animation: fadeOut 0.1s; opacity: 0%;');
+  document.getElementById('arrow').setAttribute('class', 'arrowFadeIn');
 }
 
-function fadeInArrow() {
-  document.getElementById('game').setAttribute('class', 'arrowFadeIn game')
-}
-
-function locationRequest() {
+function httpsRequest() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://salocor.pythonanywhere.com/getLocation');
   xhr.onload = function() {
@@ -178,47 +164,4 @@ function locationRequest() {
     }
   };
   xhr.send();
-}
-
-function pathRequest() {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://salocor.pythonanywhere.com/paths?pack=liberty&size=medium');
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      let response = xhr.responseText;
-      let obj = JSON.parse(response);
-      for (var i = 0; i < 4; i++) {
-        locations.push(obj[0][i]);
-      }
-    }
-    else {
-      console.error(xhr.statusText);
-    }
-  };
-  xhr.send();
-}
-
-function debugGesture() {
-  debugGestureCount++;
-  if (debugGestureCount > 5) {
-    showDebug();
-  }
-}
-
-function getDistance(lat1, lon1, lat2, lon2) {
-  var R = 20908800; // Radius of the earth in feet
-  var dLat = deg2rad(lat2-lat1);
-  var dLon = deg2rad(lon2-lon1);
-  var a =
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-    Math.sin(dLon/2) * Math.sin(dLon/2)
-    ;
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  var d = R * c; // Distance in feet
-  return d;
-}
-
-function deg2rad(deg) {
-  return deg * (Math.PI/180)
 }
