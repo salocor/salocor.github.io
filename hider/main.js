@@ -2,37 +2,17 @@ var currLat, currLong, nextLat, nextLong, dirToNext, dirToNextOffset, compass, a
 
 var locations = [];
 
-const sendLocationOld = async()=>{
-  dirToNext = (getDeg(currLat, currLong, nextLat, nextLong) * 57.29);
-  let errorThrown = false;
-   var request = "https://salocor.pythonanywhere.com/location?lat=" + currLat + "&long=" + currLong;
-  debugResult.innerHTML = "<p>Latitude: " + currLat + "<br>Longitude: " + currLong + "</p>";
-  console.log("Sent request: " + request);
-
-  try {
-    const response = fetch(request,
-      {
-        method: "GET",
-      }
-    );
-    if (response.ok) {
-      console.log("Sent ok");
-      debugResult.innerHTML = "<h3>Result: " + response + "</h3>";
-    }
-    }
-    catch(e) {
-      console.log("Error with request");
-
-  }
-}
-
 var logLocation = () => {
   navigator.geolocation.getCurrentPosition(function(location) {
     currLat = location.coords.latitude;
     currLong = location.coords.longitude;
     console.log("Latitude: " + currLat);
     console.log("Longitude: " + currLong);
-    inDestBoundary();
+    if (inDestBoundary()) {
+      document.getElementById('complete').setAttribute('style', "visibility: visible");
+    } else {
+      document.getElementById('complete').setAttribute('style', "visibility: hidden");
+    }
     sendLocation();
     //console.log(location.coords.accuracy);
   });
@@ -175,5 +155,16 @@ function updateDestination() {
 
 function inDestBoundary() {
   var distanceToNext = getDistance(currLat, currLong, nextLat, nextLong);
+  if (distanceToNext < radius) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 
+function completeLocation() {
+  completed++;
+  updateDestination();
+  document.getElementById('complete').setAttribute('style', "visibility: hidden");
 }

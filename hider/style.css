@@ -60,6 +60,13 @@ p {
   margin-top: 12vh;
 }
 
+.completeButton {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  font-family: 'Montserrat';
+}
+
 button {
   font-size: 60px;
   border-radius: 25px;
@@ -105,6 +112,8 @@ button {
   font-family: 'Montserrat';
   text-align: center;
 }
+
+
 
 .nextLocation {
   margin-left: 25px;
