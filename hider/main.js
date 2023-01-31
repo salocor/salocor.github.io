@@ -34,7 +34,7 @@ function sendLocation() {
   xhr.onload = function() {
     if (xhr.status === 200) {
       console.log("Sent ok");
-      debugResult.innerHTML = "<h3>Result: " + response + "</h3>";
+      debugResult.innerHTML = "<h3>Lat: " + currLat + "/nLong: " + currLong + "</h3>";
     }
     else {
       console.error(xhr.statusText);
