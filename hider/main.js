@@ -2,7 +2,7 @@ var currLat, currLong, nextLat, nextLong, dirToNext, dirToNextOffset, compass, a
 
 var locations = [];
 
-const sendLocation = async()=>{
+const sendLocationOld = async()=>{
   dirToNext = (getDeg(currLat, currLong, nextLat, nextLong) * 57.29);
   let errorThrown = false;
    var request = "https://salocor.pythonanywhere.com/location?lat=" + currLat + "&long=" + currLong;
@@ -24,6 +24,23 @@ const sendLocation = async()=>{
       console.log("Error with request");
 
   }
+}
+
+function sendLocation() {
+  dirToNext = (getDeg(currLat, currLong, nextLat, nextLong) * 57.29);
+  var xhr = new XMLHttpRequest();
+  var request = "https://salocor.pythonanywhere.com/location?lat=" + currLat + "&long=" + currLong;
+  xhr.open('GET', request);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      console.log("Sent ok");
+      debugResult.innerHTML = "<h3>Result: " + response + "</h3>";
+    }
+    else {
+      console.error(xhr.statusText);
+    }
+  };
+  xhr.send();
 }
 
 function pathRequest() {
