@@ -2,20 +2,8 @@ var currLat, currLong, nextLat, nextLong, dirToNext, dirToNextOffset, compass, a
 
 var locations = [];
 
-var logLocation = () => {
-  navigator.geolocation.getCurrentPosition(function(location) {
-    currLat = location.coords.latitude;
-    currLong = location.coords.longitude;
-    console.log("Latitude: " + currLat);
-    console.log("Longitude: " + currLong);
-    dirToNext = (getDeg(currLat, currLong, nextLat, nextLong) * 57.29);
-    sendLocation();
-    //console.log(location.coords.accuracy);
-  });
-};
-
-
 const sendLocation = async()=>{
+  dirToNext = (getDeg(currLat, currLong, nextLat, nextLong) * 57.29);
   let errorThrown = false;
    var request = "https://salocor.pythonanywhere.com/location?lat=" + currLat + "&long=" + currLong;
   debugResult.innerHTML = "<p>Latitude: " + currLat + "<br>Longitude: " + currLong + "</p>";
