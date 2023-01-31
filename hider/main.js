@@ -26,6 +26,17 @@ const sendLocationOld = async()=>{
   }
 }
 
+var logLocation = () => {
+  navigator.geolocation.getCurrentPosition(function(location) {
+    currLat = location.coords.latitude;
+    currLong = location.coords.longitude;
+    console.log("Latitude: " + currLat);
+    console.log("Longitude: " + currLong);
+    sendLocation();
+    //console.log(location.coords.accuracy);
+  });
+};
+
 function sendLocation() {
   dirToNext = (getDeg(currLat, currLong, nextLat, nextLong) * 57.29);
   var xhr = new XMLHttpRequest();
@@ -142,7 +153,7 @@ function startGame() {
   document.getElementById('startButton').setAttribute('style', 'opacity: 0%;');
   setTimeout(fadeInArrow(), 1000);
   rotate();
-  var timer = setInterval(sendLocation(), 1000);
+  var timer = setInterval(logLocation(), 1000);
   pathRequest();
 }
 
