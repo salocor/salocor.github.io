@@ -182,7 +182,7 @@ function httpsRequest() {
       let locationsCompReq = obj["visited"]["state"];
       for (var i = 0; i < 4; i++) {
         if (locationsCompReq[i]["completed"] != locationsComp[i]["completed"]) {
-          locationsComp[i]["completed"] == locationsCompReq[i]["completed"];
+          locationsComp[i] == locationsCompReq[i]["completed"];
 
         }
       }
