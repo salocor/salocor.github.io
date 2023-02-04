@@ -181,7 +181,7 @@ function httpsRequest() {
       enLong = obj["location"]["longitude"];
       let locationsCompReq = obj["visited"]["state"];
       for (var i = 0; i < 4; i++) {
-        if (locationsCompReq[i] != locationsComp[i]["completed"]) {
+        if (locationsCompReq[i]["completed"] != locationsComp[i]) {
           locationsComp[i] == locationsCompReq[i]["completed"];
 
         }
