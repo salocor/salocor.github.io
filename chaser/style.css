@@ -46,21 +46,78 @@ img {
   }
 }
 
-button {
-  font-size: 60px;
-  border-radius: 25px;
-  text-decoration: none;
-  border: none;
-  font-weight: 500;
-  font-style: normal;
-  font-family: arial;
-  width: 400px;
-  height: 100px;
-  display: block;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  background-color: white;
-  color: #151818;
+@media (prefers-color-scheme: dark) {
+  button {
+    font-size: 60px;
+    border-radius: 25px;
+    text-decoration: none;
+    border: none;
+    font-weight: 500;
+    font-style: normal;
+    font-family: arial;
+    width: 400px;
+    height: 100px;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: white;
+    color: #151818;
+  }
+  body {
+    background-color: #151818;
+  }
+  .title {
+    font-size: 15vw;
+    text-align: center;
+    margin-top: 4%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    color: white;
+    position: fixed;
+    top: 20%;
+    width: 100vw;
+  }
+  #arrow {
+    filter: invert(0%);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  button {
+    font-size: 60px;
+    border-radius: 25px;
+    text-decoration: none;
+    border: none;
+    font-weight: 500;
+    font-style: normal;
+    font-family: arial;
+    width: 400px;
+    height: 100px;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: #151818;
+    color: white;
+  }
+  body {
+    background-color: white;
+  }
+  .title {
+    font-size: 15vw;
+    text-align: center;
+    margin-top: 4%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    color: #151818;
+    position: fixed;
+    top: 20%;
+    width: 100vw;
+  }
+  #arrow {
+    filter: invert(100%);
+  }
 }
 
 textarea .debug {
@@ -74,10 +131,6 @@ textarea .debug {
   width: 100vw;
   position: fixed;
   bottom: 15%;
-}
-
-body {
-  background-color: #151818;
 }
 
 h3 {
@@ -110,18 +163,7 @@ p {
   left: 5%;
 }
 
-.title {
-  font-size: 15vw;
-  text-align: center;
-  margin-top: 4%;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-style: italic;
-  color: white;
-  position: fixed;
-  top: 20%;
-  width: 100vw;
-}
+
 
 .arrowDiv {
   width: 100vw;
