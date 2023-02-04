@@ -30,19 +30,16 @@
         <div class="keys">
 
         </div>
-        <button type="button" name="updateCoords" onclick="setEnCoords()" class="debugButton">Update Coordinates</button>
+        <button type="button" name="updateCoords" onclick="enableLog()" class="debugButton">Enable Log</button>
         <button type="button" name="getCoords" onclick="updateCoords()" class="debugButton">Get local coordinates</button>
         <button type="button" name="updateOffset" onclick="updateOffset()" class="debugButton">Update offset</button>
         <textarea placeholder="Latitude" id="latitude" rows="2" cols="20"></textarea>
         <textarea placeholder="Longitude" id="longitude" rows="2" cols="20"></textarea>
       </div>
     </div>
-    <div class="startDiv">
+    <div class="startDiv" id="startDiv">
       <button type="button" name="start" id="startButton" class="startButton" onclick="startGame()">&#9658;</button>
     </div>
-
-
-
 
   </body>
 </html>

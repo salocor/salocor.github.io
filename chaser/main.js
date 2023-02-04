@@ -1,19 +1,11 @@
 
 var offset = 0;
 
-var compass;
-var directionToEnemy;
-var distanceBetweenEnemy;
+var compass, directionToEnemy, distanceBetweenEnemy, alpha, tooClose;
 
-var alpha;
-var tooClose;
+var debugOpen = false, enLat = 1, enLong = 2;
 
-var debugOpen = false;
-
-var enLat = 1;
-var enLong = 2;
-
-var debugGestureCount = 0;
+var debugGestureCount = 0, doLog = false, locationsComp;
 
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
@@ -38,7 +30,9 @@ function getDeg(currLat, currLong, enLat, enLong) {
     else if (heading > 6.28319)
         heading -= 6.28319;
     let headingDegrees = heading * 180 / 3.1415;
-    console.log("Heading: " + heading + " radians. " + headingDegrees + " degrees.");
+    if (doLog) {
+      console.log("Heading: " + heading + " radians. " + headingDegrees + " degrees.");
+    }
     return heading;
 }
 
@@ -104,8 +98,10 @@ var logLocation = () => {
   navigator.geolocation.getCurrentPosition(function(location) {
     currLat = location.coords.latitude;
     currLong = location.coords.longitude;
-    console.log("Latitude: " + currLat);
-    console.log("Longitude: " + currLong);
+    if (doLog) {
+      console.log("Latitude: " + currLat);
+      console.log("Longitude: " + currLong);
+    }
     directionToEnemy = (getDeg(currLat, currLong, enLat, enLong) * 57.29);
     distanceBetweenEnemy = getDistance(currLat, currLong, enLat, enLong);
     if (distanceBetweenEnemy < 100) {
@@ -118,8 +114,9 @@ var logLocation = () => {
     enCoords.innerHTML = "<h3>Enemy Latitude: " + enLat + "<br>Enemy Longitude: " + enLong + "</h3>";
     httpsRequest();
   });
-
-  console.log('logged location');
+  if (doLog) {
+    console.log('logged location');
+  }
 };
 
 
@@ -135,10 +132,12 @@ function updateCoords() {
   enCoords.innerHTML = "<h3>Enemy Latitude: " + enLat + "<br>Enemy Longitude: " + enLong + "</h3>";
 }
 
-function setEnCoords() {
-  enLat = document.getElementById('latitude').value;
-  enLong = document.getElementById('longitude').value;
-  updateCoords();
+function enableLog() {
+  if (doLog) {
+    doLog = false;
+  } else {
+    doLog = true;
+  }
 }
 
 function updateOffset() {
@@ -149,20 +148,21 @@ function updateOffset() {
 function showDebug() {
   if (document.getElementById('debugItems').getAttribute('style') == 'visibility: hidden;') {
     document.getElementById('debugItems').setAttribute('style', 'visibility: visible;');
-    document.getElementById('debugButton').setAttribute('class', 'debugButton active');
+
   } else {
     document.getElementById('debugItems').setAttribute('style', 'visibility: hidden;');
-    document.getElementById('debugButton').setAttribute('class', 'debugButton');
+
   }
 }
 
 function startGame() {
-  rotate();
+
 
   var timer = setInterval(logLocation, 500);
-  document.getElementById('startButton').setAttribute('style', 'opacity: 0%;');
+  document.getElementById('startDiv').setAttribute('style', 'opacity: 0%; top: 120vh;');
 
   document.getElementById('title').setAttribute('style', 'animation: moveTitle 1s; top: 0%; font-size: 10vw;');
+  //rotate();
   setTimeout(fadeInArrow(), 1000);
 }
 
@@ -179,6 +179,13 @@ function httpsRequest() {
       let obj = JSON.parse(response);
       enLat = obj["location"]["latitude"];
       enLong = obj["location"]["longitude"];
+      let locationsCompReq = obj["visited"]["state"];
+      for (var i = 0; i < 4; i++) {
+        if (locationsCompReq[i]["completed"] != locationsComp[i]["completed"]) {
+          locationsComp[i]["completed"] == locationsCompReq[i]["completed"];
+
+        }
+      }
     }
     else {
       console.error(xhr.statusText);
