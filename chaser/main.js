@@ -6,7 +6,7 @@ var compass, directionToEnemy, distanceBetweenEnemy, alpha, tooClose;
 var debugOpen = false, enLat = 1, enLong = 2;
 
 var debugGestureCount = 0, doLog = false, locationsComp = [];
-let locationsCompReq;
+let locationsCompReq, obj;
 
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
@@ -177,7 +177,7 @@ function httpsRequest() {
   xhr.onload = function() {
     if (xhr.status === 200) {
       let response = xhr.responseText;
-      let obj = JSON.parse(response);
+      obj = JSON.parse(response);
       enLat = obj["location"]["latitude"];
       enLong = obj["location"]["longitude"];
       locationsCompReq = obj["visited"]["state"];
