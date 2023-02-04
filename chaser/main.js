@@ -5,7 +5,7 @@ var compass, directionToEnemy, distanceBetweenEnemy, alpha, tooClose;
 
 var debugOpen = false, enLat = 1, enLong = 2;
 
-var debugGestureCount = 0, doLog = false, locationsComp;
+var debugGestureCount = 0, doLog = false, locationsComp = [];
 
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
