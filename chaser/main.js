@@ -162,7 +162,7 @@ function startGame() {
   document.getElementById('startDiv').setAttribute('style', 'opacity: 0%; top: 120vh;');
 
   document.getElementById('title').setAttribute('style', 'animation: moveTitle 1s; top: 0%; font-size: 10vw;');
-  //rotate();
+  rotate();
   setTimeout(fadeInArrow(), 1000);
 }
 
