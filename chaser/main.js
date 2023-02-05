@@ -6,7 +6,7 @@ var compass, directionToEnemy, distanceBetweenEnemy, alpha, tooClose;
 var debugOpen = false, enLat = 1, enLong = 2;
 
 var debugGestureCount = 0, doLog = false, locationsComp, initLocationsComp = false;
-let obj, currentEnLocation;
+let obj, currentEnLocation, complete = false;
 
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
@@ -181,13 +181,21 @@ function httpsRequest() {
       enLat = obj["location"]["latitude"];
       enLong = obj["location"]["longitude"];
       locationsComp = obj["visited"]["state"];
-      for (var i = 0; locationsComp[i]['completed'] == true; i++) {
-        if (currentEnLocation != locationsComp[i]['location'] && i != 4) {
-          currentEnLocation = locationsComp[i]['location'];
-          runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[i]['location'] + '</p>';
-        } else if (currentEnLocation != locationsComp[i]['location'] && i != 4) {
+      complete = obj["complete"];
+      if (complete) {
+        console.log('got to this point');
           currentEnLocation = locationsComp[i]['location'];
           runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[i]['location'] + '<br>Runner won!</p>';
+          clearInterval(logLocation);
+      }
+      else {
+        console.log('got to here');
+        for (var i = 0; locationsComp[i]['completed'] == true; i++) {
+          if (currentEnLocation != locationsComp[i]['location'] && i != 4) {
+            console.log('here?');
+            currentEnLocation = locationsComp[i]['location'];
+            runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[i]['location'] + '</p>';
+          }
         }
       }
     }

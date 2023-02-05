@@ -181,7 +181,7 @@ function inDestBoundary() {
 function completeLocation() {
   logLocation();
 
-  if (completed < 4){
+  if (completed < 3){
     var xhr = new XMLHttpRequest();
     var req = "https://salocor.pythonanywhere.com/completed?index=" + completed + "&location=" + locations[completed]['name'];
     xhr.open('GET', req);
@@ -203,6 +203,19 @@ function completeLocation() {
     completed++;
     updateDestination();
   }
+  if (completed == 3) {
+    var xhr = new XMLHttpRequest();
+    var req = "https://salocor.pythonanywhere.com/win";
+    xhr.open('GET', req);
+    console.log(req);
+    xhr.onload = function() {
+      if (xhr.status === 200) { }
+      else {
+        console.error(xhr.statusText);
+      }
+    };
+    xhr.send();
+  }
   document.getElementById('complete').setAttribute('style', "visibility: hidden");
 }
 
@@ -212,7 +225,7 @@ function resetDatabase() {
   xhr.open('GET', request);
   xhr.onload = function() {
     if (xhr.status === 200) {
-        
+
     }
     else {
       console.error(xhr.statusText);
