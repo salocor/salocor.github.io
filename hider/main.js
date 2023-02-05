@@ -1,4 +1,4 @@
-var currLat, currLong, nextLat, nextLong, dirToNext, dirToNextOffset, compass, alpha, radius, completed = 0;
+var currLat, currLong, nextLat, nextLong, dirToNext, dirToNextOffset, compass, alpha, radius, completed = 0, debugGestureCount = 0;
 
 var locations = [];
 
@@ -232,4 +232,17 @@ function resetDatabase() {
     }
   };
   xhr.send();
+}
+
+function debugGesture() {
+  debugGestureCount++;
+  if (debugGestureCount > 5) {
+    if (document.getElementById('debugItems').getAttribute('style') == 'visibility: hidden;') {
+      document.getElementById('debugItems').setAttribute('style', 'visibility: visible;');
+
+    } else {
+      document.getElementById('debugItems').setAttribute('style', 'visibility: hidden;');
+
+    }
+  }
 }
