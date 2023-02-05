@@ -203,7 +203,7 @@ function completeLocation() {
     completed++;
     updateDestination();
   }
-  if (completed == 3) {
+  if (completed == 4) {
     var xhr = new XMLHttpRequest();
     var req = "https://salocor.pythonanywhere.com/win";
     xhr.open('GET', req);
