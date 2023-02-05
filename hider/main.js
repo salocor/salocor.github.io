@@ -205,3 +205,18 @@ function completeLocation() {
   }
   document.getElementById('complete').setAttribute('style', "visibility: hidden");
 }
+
+function resetDatabase() {
+  var xhr = new XMLHttpRequest();
+  var request = "https://salocor.pythonanywhere.com/reset"
+  xhr.open('GET', request);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+        
+    }
+    else {
+      console.error(xhr.statusText);
+    }
+  };
+  xhr.send();
+}
