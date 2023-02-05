@@ -163,6 +163,7 @@ function startGame() {
   document.getElementById('startDiv').setAttribute('style', 'opacity: 0%; top: 120vh;');
 
   document.getElementById('title').setAttribute('style', 'animation: moveTitle 1s; top: 0%; font-size: 10vw;');
+  document.getElementById('runnerLocation').setAttribute('style', 'visibility: visible; animation: zoomIn 1.55s; webkit-animation: zoomIn 1.55s;');
   rotate();
   setTimeout(fadeInArrow(), 1000);
 }
