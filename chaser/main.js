@@ -178,17 +178,18 @@ function httpsRequest() {
     if (xhr.status === 200) {
       let response = xhr.responseText;
       obj = JSON.parse(response);
-      enLat = obj["location"]["latitude"];
-      enLong = obj["location"]["longitude"];
-      locationsComp = obj["visited"]["state"];
       complete = obj["complete"];
+      locationsComp = obj["visited"]["state"];
       if (complete) {
         console.log('got to this point');
-          currentEnLocation = locationsComp[i]['location'];
-          runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[i]['location'] + '<br>Runner won!</p>';
+          currentEnLocation = locationsComp[3]['location'];
+          runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[3]['location'] + '<br>Runner won!</p>';
           clearInterval(logLocation);
       }
       else {
+        enLat = obj["location"]["latitude"];
+        enLong = obj["location"]["longitude"];
+
         console.log('got to here');
         for (var i = 0; locationsComp[i]['completed'] == true; i++) {
           if (currentEnLocation != locationsComp[i]['location'] && i != 4) {
@@ -198,6 +199,8 @@ function httpsRequest() {
           }
         }
       }
+
+
     }
     else {
       console.error(xhr.statusText);
