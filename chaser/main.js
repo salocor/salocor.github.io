@@ -182,9 +182,12 @@ function httpsRequest() {
       enLong = obj["location"]["longitude"];
       locationsComp = obj["visited"]["state"];
       for (var i = 0; locationsComp[i]['completed'] == true; i++) {
-        if (currentEnLocation != locationsComp[i]['location']) {
+        if (currentEnLocation != locationsComp[i]['location'] && i != 4) {
           currentEnLocation = locationsComp[i]['location'];
-          runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[i]['location'];
+          runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[i]['location'] + '</p>';
+        } else if (currentEnLocation != locationsComp[i]['location'] && i != 4) {
+          currentEnLocation = locationsComp[i]['location'];
+          runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[i]['location'] + '<br>Runner won!</p>';
         }
       }
     }
