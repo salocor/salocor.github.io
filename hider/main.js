@@ -201,7 +201,7 @@ function completeLocation() {
     };
     xhr.send();
     completed++;
-    updateDestination();
+    //updateDestination();
   }
   if (completed == 4) {
     var xhr = new XMLHttpRequest();
