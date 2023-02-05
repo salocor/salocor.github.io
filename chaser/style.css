@@ -134,11 +134,14 @@ textarea .debug {
 }
 
 h3 {
+  font-family: 'Montserrat';
   color: white;
 }
 
 p {
+  font-family: 'Montserrat';
   color: white;
+  font-size: 5vw;
 }
 
 .arrow {

@@ -5,8 +5,8 @@ var compass, directionToEnemy, distanceBetweenEnemy, alpha, tooClose;
 
 var debugOpen = false, enLat = 1, enLong = 2;
 
-var debugGestureCount = 0, doLog = false, locationsComp = [], initLocationsComp = false;
-let locationsCompReq, obj;
+var debugGestureCount = 0, doLog = false, locationsComp, initLocationsComp = false;
+let obj, currentEnLocation;
 
 function getDeg(currLat, currLong, enLat, enLong) {
     let longDiff = (enLong - currLong);
@@ -180,18 +180,13 @@ function httpsRequest() {
       obj = JSON.parse(response);
       enLat = obj["location"]["latitude"];
       enLong = obj["location"]["longitude"];
-      locationsCompReq = obj["visited"]["state"];
-      if (!initLocationsComp) {
-          locationsComp == locationsCompReq;
-        initLocationsComp = true;
-      } else {
-        for (var i = 0; i < 4; i++) {
-          if (locationsCompReq[i]["completed"] != locationsComp[i]["completed"]) {
-            locationsComp[i] == locationsCompReq[i];
-
-          }
+      locationsComp = obj["visited"]["state"];
+      for (var i = 0; locationsComp[i]['completed'] == true; i++) {
+        if (currentEnLocation != locationsComp[i]['location']) {
+          currentEnLocation = locationsComp[i]['location'];
+          runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[i]['location'];
         }
-    }
+      }
     }
     else {
       console.error(xhr.statusText);
