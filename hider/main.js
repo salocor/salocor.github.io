@@ -42,8 +42,21 @@ function pathRequest() {
     if (xhr.status === 200) {
       let response = xhr.responseText;
       let obj = JSON.parse(response);
+      locations = [];
+      var rand;
+      var indexUsed = [];
       for (var i = 0; i < 4; i++) {
-        locations.push(obj[0][i]);
+        rand = Math.floor(Math.random() * 10);
+        var j;
+        for (j = 0; j < i; j++) {
+          if (rand == indexUsed[j]) {
+            j = 0;
+            rand = Math.floor(Math.random() * 10);
+          }
+        }
+        locations.push(obj[rand]);
+        indexUsed.push(rand);
+        console.log(rand);
       }
       updateDestination();
     }
@@ -150,7 +163,9 @@ function updateDestination() {
   nextLocation.innerHTML = "<p class='nextLoc'> " + locations[completed]['name'] + "</p>";
   nextLat = locations[completed]['data']['lat'];
   nextLong = locations[completed]['data']['long'];
-  radius = locations[completed]['radius']
+  radius = locations[completed]['radius'];
+
+
 }
 
 function inDestBoundary() {
@@ -165,7 +180,26 @@ function inDestBoundary() {
 
 function completeLocation() {
   logLocation();
+
   if (completed < 4){
+    var xhr = new XMLHttpRequest();
+    var req = "https://salocor.pythonanywhere.com/completed?index=" + completed + "&location=" + locations[completed]['name'];
+    xhr.open('GET', req);
+    console.log(req);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        let response = xhr.responseText;
+        let obj = JSON.parse(response);
+        for (var i = 0; i < 4; i++) {
+          locations.push(obj[0][i]);
+        }
+        updateDestination();
+      }
+      else {
+        console.error(xhr.statusText);
+      }
+    };
+    xhr.send();
     completed++;
     updateDestination();
   }

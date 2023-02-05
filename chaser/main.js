@@ -182,17 +182,16 @@ function httpsRequest() {
       enLong = obj["location"]["longitude"];
       locationsCompReq = obj["visited"]["state"];
       if (!initLocationsComp) {
-        for (var i = 0; i < 4; i++) {
-          locationsComp[i] == locationsCompReq[i];
-        }
+          locationsComp == locationsCompReq;
         initLocationsComp = true;
-      }
-      for (var i = 0; i < 4; i++) {
-        if (locationsCompReq[i]["completed"] != locationsComp[i]["completed"]) {
-          locationsComp[i] == locationsCompReq[i];
+      } else {
+        for (var i = 0; i < 4; i++) {
+          if (locationsCompReq[i]["completed"] != locationsComp[i]["completed"]) {
+            locationsComp[i] == locationsCompReq[i];
 
+          }
         }
-      }
+    }
     }
     else {
       console.error(xhr.statusText);
