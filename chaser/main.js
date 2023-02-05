@@ -184,7 +184,7 @@ function httpsRequest() {
       if (complete) {
         console.log('got to this point');
           currentEnLocation = locationsComp[3]['location'];
-          runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[3]['location'] + '<br>Runner won!</p>';
+          runnerLocation.innerHTML = '<p>Runner Location:<br>' + locationsComp[3]['location'] + '<br>Runner won!</p>';
           clearInterval(logLocation);
       }
       else {
