@@ -102,14 +102,14 @@ button {
 }
 
 .destination {
-  display: flex;
-  justify-content: center;
   width: 100vw;
 }
 
 .game p {
   font-size: 5vw;
   font-family: 'Montserrat';
+  font-weight: 500;
+  font-style: italic;
   text-align: center;
 }
 

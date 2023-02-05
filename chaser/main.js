@@ -196,7 +196,7 @@ function httpsRequest() {
           if (currentEnLocation != locationsComp[i]['location'] && i != 4) {
             console.log('here?');
             currentEnLocation = locationsComp[i]['location'];
-            runnerLocation.innerHTML = '<p>Runner Location: ' + locationsComp[i]['location'] + '</p>';
+            runnerLocation.innerHTML = '<p>Runner Location:<br>' + locationsComp[i]['location'] + '</p>';
           }
         }
       }

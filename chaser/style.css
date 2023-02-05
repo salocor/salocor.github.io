@@ -140,6 +140,8 @@ h3 {
 
 p {
   font-family: 'Montserrat';
+  font-weight: 500;
+  font-style: italic;
   color: white;
   font-size: 5vw;
   text-align: center;
