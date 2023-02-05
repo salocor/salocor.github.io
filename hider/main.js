@@ -120,7 +120,7 @@ function rotate() {
       //compassOutput.innerHTML = "<h3>Compass: " + compass + "<br>Alpha: " + alpha + "<br>DirectionToEnemy: " + directionToEnemy + "<br>Arrow direction: " + dirToEnemyOffset +  "</h3>";
       //console.log("Heading: " + (alpha + 116 + (360 - directionToEnemy)) % 360); // Output + 26 for adjusting to true north + 90 since the arrow is 90 degrees off
       document.getElementById('arrow').setAttribute('style', 'transform: rotate(' + dirToNextOffset + 'deg)'); // -90 since 0 degrees is set to north
-      console.log("dirToNextOffset: " + dirToNextOffset + "\ncompass: " + compass + "\ndirToNext: " + dirToNext);
+      //console.log("dirToNextOffset: " + dirToNextOffset + "\ncompass: " + compass + "\ndirToNext: " + dirToNext);
       //console.log("(directionToEnemy - alpha - 26) % 360 = " + ((directionToEnemy - alpha - 26) % 360 ));
     }
 } , true);
