@@ -13,6 +13,7 @@
 
 @keyframes zoomIn {
   0% {
+    visibility: visible;
     opacity: 0%;
   }
 
@@ -20,6 +21,7 @@
     opacity: 0%;
   }
   100% {
+    visibility: visible;
     opacity: 100%;
   }
 }
@@ -94,6 +96,7 @@ button {
 
 .gameBeforeFade {
   opacity: 0%;
+  visibility: hidden;
 }
 
 .debugResult {
