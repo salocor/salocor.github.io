@@ -142,7 +142,7 @@ function deg2rad(deg) {
 function startGame() {
   resetDatabase();
   document.getElementById('title').setAttribute('style', 'animation: moveTitle 1s; top: 0%; font-size: 10vw;');
-  document.getElementById('startButton').setAttribute('style', 'opacity: 0%;');
+  document.getElementById('startButton').setAttribute('style', 'visibility: hidden;');
   pathRequest();
   setTimeout(fadeInArrow(), 1000);
   rotate();
