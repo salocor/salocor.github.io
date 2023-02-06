@@ -2,6 +2,8 @@ var currLat, currLong, nextLat, nextLong, dirToNext, dirToNextOffset, compass, a
 
 var locations = [];
 
+const userAgent = navigator.userAgent;
+
 var logLocation = () => {
   navigator.geolocation.getCurrentPosition(function(location) {
     currLat = location.coords.latitude;
@@ -97,31 +99,24 @@ function getDeg(currLat, currLong, enLat, enLong) {
 
 function rotate() {
   var dirToEnemyOffset;
-  DeviceOrientationEvent.requestPermission()
+  if (getIOSVersion() > 14){
+    DeviceOrientationEvent.requestPermission();
+  }
   window.addEventListener('deviceorientation', function(event) {
     if (event.webkitCompassHeading) {
 
-      // You may consider adding/distracting landscape/portrait mode value here
       alpha = event.webkitCompassHeading;
       if (alpha < 0) { alpha += 360; }
       if (alpha > 360) { alpha -= 360; }
-      //console.log("Alpha: " + alpha);
-      //debugOutput.innerHTML =
+
       compass = -((-alpha) % 360);
-      // Negative alpha because alpha is
-      // reversed for some reason. -26 for
-      // true north. Mod 360 beacuse i was
-      // getting ranges from 24 - 380. The
-      // last negative is because the output
-      // was negative and i have no idea why.
+
       dirToNextOffset = -compass + dirToNext;
       if (dirToNextOffset < 0) { dirToNextOffset += 360; }
       if (dirToNextOffset > 360) { dirToNextOffset -= 360; }
-      //compassOutput.innerHTML = "<h3>Compass: " + compass + "<br>Alpha: " + alpha + "<br>DirectionToEnemy: " + directionToEnemy + "<br>Arrow direction: " + dirToEnemyOffset +  "</h3>";
-      //console.log("Heading: " + (alpha + 116 + (360 - directionToEnemy)) % 360); // Output + 26 for adjusting to true north + 90 since the arrow is 90 degrees off
+
       document.getElementById('arrow').setAttribute('style', 'transform: rotate(' + dirToNextOffset + 'deg)'); // -90 since 0 degrees is set to north
-      //console.log("dirToNextOffset: " + dirToNextOffset + "\ncompass: " + compass + "\ndirToNext: " + dirToNext);
-      //console.log("(directionToEnemy - alpha - 26) % 360 = " + ((directionToEnemy - alpha - 26) % 360 ));
+
     }
 } , true);
 }
@@ -246,4 +241,11 @@ function debugGesture() {
 
     }
   }
+}
+
+function getIOSVersion() {
+  const userAgent = navigator.userAgent;
+  const iOSIndex = userAgent.indexOf('OS ');
+  if (iOSIndex === -1) return null;
+  return parseInt(userAgent.substr(iOSIndex + 3, 2), 10);
 }
