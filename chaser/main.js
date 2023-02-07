@@ -39,7 +39,9 @@ function getDeg(currLat, currLong, enLat, enLong) {
 
 function rotate() {
   var dirToEnemyOffset;
-  DeviceOrientationEvent.requestPermission()
+  if (getIOSVersion() > 14){
+    DeviceOrientationEvent.requestPermission();
+  }
   window.addEventListener('deviceorientation', function(event) {
     if (event.webkitCompassHeading) {
 
@@ -233,4 +235,11 @@ function getDistance(lat1, lon1, lat2, lon2) {
 
 function deg2rad(deg) {
   return deg * (Math.PI/180)
+}
+
+function getIOSVersion() {
+  const userAgent = navigator.userAgent;
+  const iOSIndex = userAgent.indexOf('OS ');
+  if (iOSIndex === -1) return null;
+  return parseInt(userAgent.substr(iOSIndex + 3, 2), 10);
 }
