@@ -23,7 +23,7 @@
   "background_color": "#151818",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#3367D6",
+  "theme_color": "#151818",
   "shortcuts": [
     {
       "name": "Play as Runner",
