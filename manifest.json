@@ -30,6 +30,7 @@
       "short_name": "Runner",
       "description": "Play as chaser",
       "url": "/hider",
+      "theme_color": "#151818",
       "icons": [{ "src": "/images/icons-192.png", "sizes": "192x192" }]
     },
     {
@@ -37,6 +38,7 @@
       "short_name": "Chaser",
       "description": "Play as chaser",
       "url": "/chaser",
+      "theme_color": "#151818",
       "icons": [{ "src": "/images/icons-192.png", "sizes": "192x192" }]
     }
   ]
