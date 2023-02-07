@@ -138,6 +138,10 @@ h3 {
   color: white;
 }
 
+body {
+  background-color: #151818;
+}
+
 p {
   font-family: 'Montserrat';
   font-weight: 500;
