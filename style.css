@@ -30,6 +30,7 @@ p{
   font-size: 100pt;
   text-align: center;
   font-family: 'Montserrat';
+  font-style: italic;
   font-weight: 500;
   color: white;
 }
@@ -47,6 +48,7 @@ button {
   background-color: white;
   color: #151818;
   font-family: 'Montserrat';
+  font-style: italic;
 }
 
 .blurOut {
