@@ -120,6 +120,13 @@ var logLocation = () => {
   if (doLog) {
     console.log('logged location');
   }
+  if (distanceBetweenEnemy < 75) {
+    document.getElementById('arrowDiv').setAttribute('style', 'animation: blur 1s; filter: blur(100px);');
+    document.getElementById('warningDiv').setAttribute('style', 'visibility: visible;');
+  } else {
+    document.getElementById('arrowDiv').setAttribute('style', 'animation: unblur 1s; filter: blur(0px);');
+    document.getElementById('warningDiv').setAttribute('style', 'visibility: hidden;');
+  }
 };
 
 
@@ -186,7 +193,7 @@ function httpsRequest() {
       if (complete) {
         console.log('got to this point');
           currentEnLocation = locationsComp[3]['location'];
-          runnerLocation.innerHTML = '<p>Runner Location:<br>' + locationsComp[3]['location'] + '<br>Runner won!</p>';
+          runnerLocation.innerHTML = '<p>Last Known Runner Location:<br><br>' + locationsComp[3]['location'] + '<br>Runner won!</p>';
           clearInterval(logLocation);
       }
       else {
@@ -198,7 +205,7 @@ function httpsRequest() {
           if (currentEnLocation != locationsComp[i]['location'] && i != 4) {
             console.log('here?');
             currentEnLocation = locationsComp[i]['location'];
-            runnerLocation.innerHTML = '<p>Runner Location:<br>' + locationsComp[i]['location'] + '</p>';
+            runnerLocation.innerHTML = '<p>Last Known Runner Location:<br><br>' + locationsComp[i]['location'] + '</p>';
           }
         }
       }

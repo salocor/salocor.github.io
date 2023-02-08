@@ -46,6 +46,23 @@ img {
   }
 }
 
+@keyframes blur {
+  0% {
+    filter: blur(0px);
+  }
+  100% {
+    filter: blur(100px);
+  }
+}
+
+@keyframes unblur {
+  0% {
+    filter: blur(100px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
 
 button {
   font-size: 60px;
@@ -78,10 +95,6 @@ body {
   top: 20%;
   width: 100vw;
 }
-#arrow {
-  filter: invert(0%);
-}
-
 
 textarea .debug {
   height: 100px;
@@ -138,4 +151,11 @@ p {
   display: flex;
   justify-content: center;
   margin-top: 12vh;
+}
+
+.warningDiv {
+  text-align: center;
+  position: fixed;
+  top: 30%;
+  width: 100vw;
 }

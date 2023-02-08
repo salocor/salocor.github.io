@@ -13,11 +13,14 @@
   </head>
   <body>
     <p class="title" id="title" onclick="debugGesture()">Manhunt</p>
-    <div class="arrowDiv">
+    <div class="arrowDiv" id="arrowDiv">
       <img src="./right-arrow.png" onclick="rotate()" id="arrow" class="arrow">
     </div>
+    <div class="warningDiv" id="warningDiv" style="visibility: hidden;">
+      <p>You are close to the runner!</p>
+    </div>
     <div class="runnerLocation arrowDiv" id="runnerLocation" style="visibility: hidden">
-      <p>Runner Location: ???</p>
+      <p>Last Known Runner Location:<br><br>???</p>
     </div>
     <br>
 
